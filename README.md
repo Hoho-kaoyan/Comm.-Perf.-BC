@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hoho · 名片网站 (Hoho Studio)
 
-## Getting Started
+一个**单页名片网站**，用于展示歌手「Hoho」的原创作品、舞台现场、承接的商演与婚礼驻唱业务（**擅长周杰伦与华语流行金曲**，广州 / 佛山就近档期）。
 
-First, run the development server:
+> 纯静态站点，可免费部署到 **Vercel / Netlify / Cloudflare Pages / GitHub Pages**，无需服务器。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 技术栈
+
+- **Next.js 16** (App Router, 静态导出)
+- **TypeScript**
+- **Tailwind CSS v4**
+- **shadcn/ui** 风格的 Card / Button
+- **Framer Motion** 滚动与微交互
+- **@splinetool/react-spline** 3D 场景
+- **Lucide React** 图标
+
+## 目录结构
+
+```
+.
+├── app/
+│   ├── layout.tsx          # 根布局 + 字体 + SEO
+│   ├── page.tsx            # 单页组合所有 section
+│   └── globals.css         # Tailwind v4 主题（黑金）
+├── components/
+│   ├── ui/                 # 基础组件：Card / Button / Spline / Spotlight
+│   ├── sections/           # 业务 section：Hero / Stats / Services / ...
+│   ├── site-header.tsx
+│   └── site-footer.tsx
+├── data/                   # 静态数据：songs / videos / services / testimonials / profile
+├── lib/utils.ts            # cn() 工具
+├── public/                 # favicon / 静态资源
+├── DEPLOY.md               # Vercel / GitHub Pages 部署指南
+└── next.config.ts          # output: 'export'
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 本地开发
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev          # http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 静态构建
 
-## Learn More
+```bash
+npm run build
+# 产物输出到 ./out/ ，纯 HTML/CSS/JS
+```
 
-To learn more about Next.js, take a look at the following resources:
+本地预览构建产物：
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx serve out
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 部署
 
-## Deploy on Vercel
+详见 [DEPLOY.md](./DEPLOY.md) — 推荐 Vercel（push 即部署，免费，CDN 加速）。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 数据修改
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+所有内容（歌曲、视频、服务、客户评价、联系方式）都集中在 `data/` 目录下，直接修改对应 `.ts` 文件即可，刷新页面生效。
+
+## License
+
+MIT — 拿去做你自己的名片网站吧。
